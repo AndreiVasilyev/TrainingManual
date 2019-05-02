@@ -9,11 +9,11 @@ public class ExceptionsDialods {
 		ExceptionsDialods.mainWindow = mainWindow;
 	}
 
-	public static void showReadExceptionDialog(String sourseException, String message) {
-		JOptionPane.showMessageDialog(mainWindow, message, sourseException, JOptionPane.ERROR_MESSAGE);
+	public static void showFatalExceptionDialog(String message) {
+		JOptionPane.showMessageDialog(mainWindow, message, "Ошибка", JOptionPane.ERROR_MESSAGE);
 	}
 
-	public static void showWriteExceptionDialog(String sourseException, String message) {
-		JOptionPane.showMessageDialog(mainWindow, message, sourseException, JOptionPane.WARNING_MESSAGE);
+	public static void showWarningExceptionDialog(String message) {
+		JOptionPane.showMessageDialog(mainWindow, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
 	}
 }

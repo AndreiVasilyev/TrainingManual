@@ -2,6 +2,8 @@ package by.bobruisk.trainingmanual.data;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
 import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
 import by.bobruisk.trainingmanual.model.Answer;
 import by.bobruisk.trainingmanual.model.Question;
@@ -10,17 +12,17 @@ import by.bobruisk.trainingmanual.model.Topic;
 
 public class DefaultQuestionsDataBaseLoader {
 
-	private FileLoader fileLoader;
+	private DataLoader fileLoader;
 	private List<Section> sections;
 	private List<Topic> topics;
 	private List<Question> questions;
 	private List<Answer> answers;
 
-	public DefaultQuestionsDataBaseLoader(FileLoader fileLoader) {
+	public DefaultQuestionsDataBaseLoader(DataLoader fileLoader) {
 		this.fileLoader = fileLoader;
 	}
 
-	public void loadDefaultDataToFile() throws FileLoaderException {
+	public void loadDefaultDataToFile() throws DataBaseException {
 
 		sections = new ArrayList<Section>();
 		topics = new ArrayList<Topic>();
@@ -110,7 +112,15 @@ public class DefaultQuestionsDataBaseLoader {
 
 		newSection("Типы данных", topics);
 
-		fileLoader.saveData((ArrayList<Section>) sections);
+		try {
+			
+			fileLoader.saveData((ArrayList<Section>) sections);
+			
+		} catch (FileLoaderException currentException) {
+			
+			throw new DataBaseException("Ошибка сохранения данных из БД"+currentException.getMessage(),currentException);
+			
+		}
 
 	}
 

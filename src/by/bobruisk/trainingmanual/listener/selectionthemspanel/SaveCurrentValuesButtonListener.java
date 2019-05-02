@@ -26,6 +26,7 @@ public class SaveCurrentValuesButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		rootNode = mainWindow.selectionThemesPanel.rootNode;
 		questionsDataBase.setQuestionsForTest(new ArrayList<Question>());
+		questionsDataBase.setSelectedTopics(new ArrayList<String>());
 		questionsDataBase.createQuestionsForTest(rootNode, null);
 		if (questionsDataBase.getQuestionsForTest().isEmpty()) {
 			JOptionPane.showMessageDialog(mainWindow.selectionThemesPanel,

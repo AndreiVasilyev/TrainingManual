@@ -8,10 +8,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import by.bobruisk.trainingmanual.data.QuestionsDataBase;
+import by.bobruisk.trainingmanual.data.UsersDataBase;
+import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
+import by.bobruisk.trainingmanual.exceptionHandling.MainWindowException;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.AdministrationModeItemListener;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.ExitMenuItemListener;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.RunTestMenuItemListener;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.SelectionThemesMenuItemListener;
+import by.bobruisk.trainingmanual.listener.mainwindowelements.ViewStatisticsMenuItemListener;
 
 public class MainWindow extends JFrame {
 
@@ -20,20 +24,23 @@ public class MainWindow extends JFrame {
 	public JMenu menu;
 	public JMenuItem menuItem;
 	public SelectionThemesPanel selectionThemesPanel;
+	public ViewStatisticPanel viewStatisticPanel;
 	public RunTestPanel runTestPanel;
 	public ResultTestInformationPanel resultTestInformationPanel;
 	public QuestionsDataBase questionsDataBase;
+	public UsersDataBase usersDataBase;
 	public LoginDialog loginDialog;
 	public InputNewQuestionPanel inputNewQuestionPanel;
 	public MainPanel mainPanel;
 
-	public MainWindow(QuestionsDataBase questionsDataBase) {
+	public MainWindow(QuestionsDataBase questionsDataBase, UsersDataBase usersDataBase) {
 
+		this.questionsDataBase = questionsDataBase;
+		this.usersDataBase = usersDataBase;
 		setMainWindowParameters();
 		createMenu();
 		createMainPanel();
 		packDefaultComponents();
-		this.questionsDataBase = questionsDataBase;
 
 	}
 
@@ -50,9 +57,17 @@ public class MainWindow extends JFrame {
 			loginDialog.setSucceeded(false);
 		}
 	}
-	
-	public void createMainPanel() {
-		mainPanel = new MainPanel(this);
+
+	public void createMainPanel() throws MainWindowException {
+		try {
+
+			mainPanel = new MainPanel(this);
+
+		} catch (FileLoaderException currentException) {
+
+			throw new MainWindowException("Ошибка создания GUI " + currentException.getMessage(), currentException);
+
+		}
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
 		validate();
 	}
@@ -66,6 +81,12 @@ public class MainWindow extends JFrame {
 	public void createSelectionThemesPanel() {
 		selectionThemesPanel = new SelectionThemesPanel(this);
 		getContentPane().add(selectionThemesPanel, BorderLayout.CENTER);
+		validate();
+	}
+
+	public void createViewStatisticPanel() {
+		viewStatisticPanel = new ViewStatisticPanel(this);
+		getContentPane().add(viewStatisticPanel, BorderLayout.CENTER);
 		validate();
 	}
 
@@ -90,6 +111,8 @@ public class MainWindow extends JFrame {
 		menu.add(menuItem);
 		createChooseSectionMenuItem();
 		menu.add(menuItem);
+		createViewStatisticsMenuItem();
+		menu.add(menuItem);
 		menu.addSeparator();
 		createAdministrationModeItem();
 		menu.add(menuItem);
@@ -111,6 +134,14 @@ public class MainWindow extends JFrame {
 		menuItem.setDisplayedMnemonicIndex(1);
 		ExitMenuItemListener exitMenuItemListener = new ExitMenuItemListener();
 		menuItem.addActionListener(exitMenuItemListener);
+	}
+
+	private void createViewStatisticsMenuItem() {
+		menuItem = new JMenuItem("Посмотреть статистику", KeyEvent.VK_G);
+		menuItem.setDisplayedMnemonicIndex(0);
+		menuItem.getAccessibleContext().setAccessibleDescription("Позволяет просмотреть статистику");
+		ViewStatisticsMenuItemListener viewStatisticsMenuItemListener = new ViewStatisticsMenuItemListener(this);
+		menuItem.addActionListener(viewStatisticsMenuItemListener);
 	}
 
 	private void createChooseSectionMenuItem() {
@@ -141,7 +172,7 @@ public class MainWindow extends JFrame {
 		getJMenuBar().validate();
 		getJMenuBar().repaint();
 	}
-	
+
 	public void activateMenu() {
 		getJMenuBar().getMenu(0).setEnabled(true);
 		getJMenuBar().validate();

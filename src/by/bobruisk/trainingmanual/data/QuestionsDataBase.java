@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
 import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
 import by.bobruisk.trainingmanual.gui.CheckBoxNode;
 import by.bobruisk.trainingmanual.model.Question;
@@ -13,17 +14,25 @@ public class QuestionsDataBase {
 
 	private List<Section> sections;
 	private List<Question> selectedQuestionsForTest;
+	private List<String> selectedTopics;
 	private List<String> allSectionsName;
 	public Test test;
-	public FileLoader fileLoader;
+	public DataLoader fileLoader;
 
-	public QuestionsDataBase() throws FileLoaderException {
+	public QuestionsDataBase() throws DataBaseException {
 
 		sections = new ArrayList<Section>();
 		allSectionsName = new ArrayList<String>();
 		fileLoader = new FileLoader();
-		sections = fileLoader.getData();
+		try {
+			sections = fileLoader.getData();
+		} catch (FileLoaderException currentException) {
+
+			throw new DataBaseException("Ошибка получения данных для БД  " + currentException.getMessage(),
+					currentException);
+		}
 		selectedQuestionsForTest = new ArrayList<Question>();
+		selectedTopics = new ArrayList<String>();
 		setDefaultQuestionsForTest(sections);
 
 	}
@@ -35,7 +44,7 @@ public class QuestionsDataBase {
 	public void setQuestionsForTest(List<Question> questionsForTest) {
 		this.selectedQuestionsForTest = questionsForTest;
 	}
-	
+
 	public List<Section> getSections() {
 		return sections;
 	}
@@ -44,6 +53,14 @@ public class QuestionsDataBase {
 		this.sections = sections;
 	}
 	
+	public List<String> getSelectedTopics() {
+		return selectedTopics;
+	}
+
+	public void setSelectedTopics(List<String> selectedTopics) {
+		this.selectedTopics = selectedTopics;
+	}
+
 	public void resetTest() {
 		test = new Test(selectedQuestionsForTest);
 	}
@@ -54,6 +71,7 @@ public class QuestionsDataBase {
 			if (subsections.get(i).getTopics() != null) {
 				for (int j = 0; j < subsections.get(i).getTopics().size(); j++) {
 					selectedQuestionsForTest.addAll(subsections.get(i).getTopics().get(j).getQuestions());
+					selectedTopics.add(subsections.get(i).getTopics().get(j).getTopicName());
 				}
 			}
 			if (subsections.get(i).getSubSections() != null) {
@@ -64,6 +82,7 @@ public class QuestionsDataBase {
 	}
 
 	
+
 	public List<Question> createQuestionsForTest(DefaultMutableTreeNode node, Section section) {
 
 		DefaultMutableTreeNode currentNode;
@@ -116,6 +135,7 @@ public class QuestionsDataBase {
 				if (isSelected) {
 					section.getTopics().get(i).setSelectedInTree(true);
 					selectedQuestionsForTest.addAll(section.getTopics().get(i).getQuestions());
+					selectedTopics.add(section.getTopics().get(i).getTopicName());
 				} else {
 					section.getTopics().get(i).setSelectedInTree(false);
 				}

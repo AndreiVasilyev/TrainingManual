@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import by.bobruisk.trainingmanual.exceptionHandling.ExceptionHandler;
 import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
 import by.bobruisk.trainingmanual.gui.MainWindow;
 import by.bobruisk.trainingmanual.model.Answer;
@@ -130,15 +131,14 @@ public class SaveQuestionButtonListener implements ActionListener {
 			return;
 		}
 
-		
-			try {
-				mainWindow.questionsDataBase.fileLoader.saveData(sections);
-			} catch (FileLoaderException currentException) {
-				
-				currentException.getMessageDialog();
-				
-			}
-			resetValuesAndFields();
+		try {
+			mainWindow.questionsDataBase.fileLoader.saveData(sections);
+		} catch (FileLoaderException currentException) {
+
+			new ExceptionHandler(currentException);
+
+		}
+		resetValuesAndFields();
 
 	}
 
