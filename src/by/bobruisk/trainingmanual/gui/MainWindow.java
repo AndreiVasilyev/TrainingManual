@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 
 import by.bobruisk.trainingmanual.data.QuestionsDataBase;
 import by.bobruisk.trainingmanual.data.UsersDataBase;
-import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
+import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.exceptionHandling.MainWindowException;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.AdministrationModeItemListener;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.ExitMenuItemListener;
@@ -63,7 +63,7 @@ public class MainWindow extends JFrame {
 
 			mainPanel = new MainPanel(this);
 
-		} catch (FileLoaderException currentException) {
+		} catch (DataLoaderException currentException) {
 
 			throw new MainWindowException("Ошибка создания GUI " + currentException.getMessage(), currentException);
 

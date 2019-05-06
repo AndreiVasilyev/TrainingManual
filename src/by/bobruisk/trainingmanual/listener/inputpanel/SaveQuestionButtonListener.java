@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.exceptionHandling.ExceptionHandler;
-import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.MainWindow;
 import by.bobruisk.trainingmanual.model.Answer;
 import by.bobruisk.trainingmanual.model.Question;
@@ -69,9 +69,10 @@ public class SaveQuestionButtonListener implements ActionListener {
 				sections.add(section);
 			}
 		} else if (sectionComboBox.getSelectedItem().equals("")) {
-			JOptionPane.showMessageDialog(mainWindow.inputNewQuestionPanel,
-					"Необходимо выбрать раздел или задать новый", "Ошибка", JOptionPane.ERROR_MESSAGE);
+
+			ExceptionsDialogs.showWarningExceptionDialog("Необходимо выбрать раздел или задать новый");
 			return;
+
 		} else {
 			subSection = section;
 		}
@@ -89,8 +90,9 @@ public class SaveQuestionButtonListener implements ActionListener {
 		} else if (!topicComboBox.getSelectedItem().equals("")) {
 			topic = searchTopic(subSection, topicComboBox.getSelectedItem().toString());
 		} else {
-			JOptionPane.showMessageDialog(mainWindow.inputNewQuestionPanel, "Необходимо выбрать тему или задать новую",
-					"Ошибка", JOptionPane.ERROR_MESSAGE);
+
+			ExceptionsDialogs.showWarningExceptionDialog("Необходимо выбрать тему или задать новую");
+
 			return;
 		}
 
@@ -100,8 +102,9 @@ public class SaveQuestionButtonListener implements ActionListener {
 			question.setAnswered(false);
 			topic.getQuestions().add(question);
 		} else {
-			JOptionPane.showMessageDialog(mainWindow.inputNewQuestionPanel, "Необходимо ввести текст вопроса", "Ошибка",
-					JOptionPane.ERROR_MESSAGE);
+
+			ExceptionsDialogs.showWarningExceptionDialog("Необходимо ввести текст вопроса");
+
 			return;
 		}
 
@@ -125,15 +128,16 @@ public class SaveQuestionButtonListener implements ActionListener {
 		if (answers != null && answers.size() > 1 && selectedanswersCount == 1) {
 			question.setAnswers(answers);
 		} else {
-			JOptionPane.showMessageDialog(mainWindow.inputNewQuestionPanel,
-					"Необходимо ввести минимум два варианта ответа и отметить только один правильный", "Ошибка",
-					JOptionPane.ERROR_MESSAGE);
+
+			ExceptionsDialogs.showWarningExceptionDialog(
+					"Необходимо ввести минимум два варианта ответа и отметить только один правильный");
+
 			return;
 		}
 
 		try {
 			mainWindow.questionsDataBase.fileLoader.saveData(sections);
-		} catch (FileLoaderException currentException) {
+		} catch (DataLoaderException currentException) {
 
 			new ExceptionHandler(currentException);
 

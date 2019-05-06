@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
-import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
+import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.model.Group;
 import by.bobruisk.trainingmanual.model.Result;
 import by.bobruisk.trainingmanual.model.Student;
@@ -21,7 +21,7 @@ public class UsersDataBase {
 		statFileLoader = new StatFileLoader();
 		try {
 			groups = statFileLoader.getData();
-		} catch (FileLoaderException currentException) {
+		} catch (DataLoaderException currentException) {
 
 			throw new DataBaseException("Ошибка загрузки статистики для БД  " + currentException.getMessage(),
 					currentException);
@@ -29,7 +29,7 @@ public class UsersDataBase {
 		if (groups == null) {
 			groups = new ArrayList<Group>();
 		}
-		
+
 	}
 
 	public void addNewEmptyGroup(String groupName) {
@@ -56,7 +56,7 @@ public class UsersDataBase {
 
 			statFileLoader.saveData(groups);
 
-		} catch (FileLoaderException currentException) {
+		} catch (DataLoaderException currentException) {
 
 			throw new DataBaseException("Ошибка сохранения статистики из БД " + currentException.getMessage(),
 					currentException);
@@ -81,7 +81,7 @@ public class UsersDataBase {
 		this.currentUser = currentUser;
 	}
 
-	public String getDEFAULT_USER() {
+	public String getDefaultUser() {
 		return DEFAULT_USER;
 	}
 

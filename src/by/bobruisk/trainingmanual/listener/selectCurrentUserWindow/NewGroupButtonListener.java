@@ -3,8 +3,7 @@ package by.bobruisk.trainingmanual.listener.selectCurrentUserWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.SelectCurrentUserWindow;
 
 public class NewGroupButtonListener implements ActionListener {
@@ -25,8 +24,9 @@ public class NewGroupButtonListener implements ActionListener {
 			selectCurrentUserWindow.groupsPanel.refreshComboBoxModelData();
 			selectCurrentUserWindow.groupsPanel.newGroupTextField.setText("");
 		} else {
-			JOptionPane.showMessageDialog(selectCurrentUserWindow, "Введите название новой группы", "Ошибка",
-					JOptionPane.WARNING_MESSAGE);
+
+			ExceptionsDialogs.showWarningExceptionDialog("Введите название новой группы");
+
 		}
 	}
 

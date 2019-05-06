@@ -20,7 +20,7 @@ public class AdminModeButtonListener implements ActionListener {
 
 		selectCurrentUserWindow.mainWindow.usersDataBase.setCurrentUser(null);
 		selectCurrentUserWindow.mainWindow.mainPanel.currentUserNameLable
-				.setText(selectCurrentUserWindow.mainWindow.usersDataBase.getDEFAULT_USER());
+				.setText(selectCurrentUserWindow.mainWindow.usersDataBase.getDefaultUser());
 		selectCurrentUserWindow.mainWindow.mainPanel.selectUserButton.setEnabled(true);
 		selectCurrentUserWindow.dispose();
 

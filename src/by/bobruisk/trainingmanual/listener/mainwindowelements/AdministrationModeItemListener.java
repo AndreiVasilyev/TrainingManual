@@ -13,8 +13,8 @@ public class AdministrationModeItemListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+
 		mainWindow.deactivateMenu();
-		
 		mainWindow.createLoginDialog();
 
 	}

@@ -8,11 +8,11 @@ import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.SelectCurrentUserWindow;
 import by.bobruisk.trainingmanual.model.Student;
 
-public class RemoveStudentButtonListener implements ActionListener {
+public class DeleteStudentButtonListener implements ActionListener {
 
 	private SelectCurrentUserWindow selectCurrentUserWindow;
 
-	public RemoveStudentButtonListener(SelectCurrentUserWindow selectCurrentUserWindow) {
+	public DeleteStudentButtonListener(SelectCurrentUserWindow selectCurrentUserWindow) {
 
 		this.selectCurrentUserWindow = selectCurrentUserWindow;
 
@@ -23,10 +23,11 @@ public class RemoveStudentButtonListener implements ActionListener {
 
 		if (!selectCurrentUserWindow.studentsPanel.studentsList.isSelectionEmpty()) {
 			String selectedStudentName = selectCurrentUserWindow.studentsPanel.studentsList.getSelectedValue();
-			List<Student> studentsForModel = selectCurrentUserWindow.studentsPanel.studentsForModel;
-			Student selectedStudent = studentsForModel.stream()
-					.filter(Student -> Student.toString().equals(selectedStudentName)).findFirst().get();
-			studentsForModel.remove(selectedStudent);
+			List<Student> students = selectCurrentUserWindow.studentsPanel.currentGroup.getStudents();
+			Student selectedStudent = students.stream()
+					.filter(student -> student.toString().equals(selectedStudentName)).findFirst().get();
+			students.remove(selectedStudent);
+			selectCurrentUserWindow.studentsPanel.refreshStudentsModel();
 			selectCurrentUserWindow.studentsPanel.refreshStudentsList();
 
 		} else {

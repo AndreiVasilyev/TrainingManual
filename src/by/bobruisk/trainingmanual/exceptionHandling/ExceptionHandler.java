@@ -1,6 +1,6 @@
 package by.bobruisk.trainingmanual.exceptionHandling;
 
-import by.bobruisk.trainingmanual.gui.ExceptionsDialods;
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 
 public class ExceptionHandler {
 
@@ -11,10 +11,10 @@ public class ExceptionHandler {
 	private void handleException(Throwable currentException) {
 
 		if (currentException.getMessage().contains("чтения")) {
-			ExceptionsDialods.showFatalExceptionDialog(currentException.getMessage());
+			ExceptionsDialogs.showFatalExceptionDialog(currentException.getMessage());
 			System.exit(0);
 		} else {
-			ExceptionsDialods.showWarningExceptionDialog(currentException.getMessage());
+			ExceptionsDialogs.showWarningExceptionDialog(currentException.getMessage());
 		}
 
 	}

@@ -72,7 +72,7 @@ public class ViewStatisticPanel extends JPanel {
 		listModel.removeAllElements();
 		String currentGroupName = (String) groupsComboBox.getSelectedItem();
 		if (currentGroupName != null && !currentGroupName.isEmpty()) {
-			currentGroup = groups.stream().filter(Group -> Group.getGroupName().equals(currentGroupName)).findFirst()
+			currentGroup = groups.stream().filter(group -> group.getGroupName().equals(currentGroupName)).findFirst()
 					.get();
 			if (!currentGroup.getStudents().isEmpty()) {
 				for (Student student : currentGroup.getStudents()) {
@@ -87,7 +87,7 @@ public class ViewStatisticPanel extends JPanel {
 		if (!studentsList.isSelectionEmpty()) {
 			String currentStudentName = studentsList.getSelectedValue();
 			Student currentStudent = currentGroup.getStudents().stream()
-					.filter(Student -> Student.toString().equals(currentStudentName)).findFirst().get();
+					.filter(student -> student.toString().equals(currentStudentName)).findFirst().get();
 			if (currentStudent.getPassedTests() != null && !currentStudent.getPassedTests().isEmpty()) {
 				for (int i = 0; i < currentStudent.getPassedTests().size(); i++) {
 					studentStatisticsTextArea.append("Тест " + (i + 1) + "\n\n");
@@ -96,7 +96,7 @@ public class ViewStatisticPanel extends JPanel {
 					studentStatisticsTextArea
 							.append("Набрано: " + currentStudent.getPassedTests().get(i).getPersents() + "%\n");
 					studentStatisticsTextArea.append(
-							"Правильных ответов: " + currentStudent.getPassedTests().get(i).getCountAnswers() + "\n");
+							"Правильных ответов: " + currentStudent.getPassedTests().get(i).getResultText() + "\n");
 					studentStatisticsTextArea.append("Темы теста: \n");
 					for (int j = 0; j < currentStudent.getPassedTests().get(i).getTopics().size(); j++) {
 						studentStatisticsTextArea

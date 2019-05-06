@@ -3,8 +3,7 @@ package by.bobruisk.trainingmanual.listener.selectCurrentUserWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.SelectCurrentUserWindow;
 import by.bobruisk.trainingmanual.model.Group;
 
@@ -32,12 +31,14 @@ public class NewStudentButtonListener implements ActionListener {
 				selectCurrentUserWindow.studentsPanel.nameTextField.setText("");
 				selectCurrentUserWindow.studentsPanel.surnameTextField.setText("");
 			} else {
-				JOptionPane.showMessageDialog(selectCurrentUserWindow, "Введите Имя и Фамилию", "Ошибка",
-						JOptionPane.WARNING_MESSAGE);
+
+				ExceptionsDialogs.showWarningExceptionDialog("Введите Имя и Фамилию");
+
 			}
-		}else {
-			JOptionPane.showMessageDialog(selectCurrentUserWindow, "Нужно выбрать текущую группу!", "Ошибка",
-					JOptionPane.WARNING_MESSAGE);
+		} else {
+
+			ExceptionsDialogs.showWarningExceptionDialog("Нужно выбрать текущую группу!");
+
 		}
 
 	}

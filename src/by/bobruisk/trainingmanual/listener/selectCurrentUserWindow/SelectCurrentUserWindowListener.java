@@ -5,9 +5,8 @@ import java.awt.event.WindowListener;
 
 import by.bobruisk.trainingmanual.gui.MainWindow;
 
-
 public class SelectCurrentUserWindowListener implements WindowListener {
-	
+
 	private MainWindow mainWindow;
 
 	public SelectCurrentUserWindowListener(MainWindow mainWindow) {
@@ -30,7 +29,7 @@ public class SelectCurrentUserWindowListener implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		
+
 		mainWindow.mainPanel.selectUserButton.setEnabled(true);
 
 	}

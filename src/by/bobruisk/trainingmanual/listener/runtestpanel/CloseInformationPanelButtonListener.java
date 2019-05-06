@@ -14,7 +14,7 @@ public class CloseInformationPanelButtonListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-				
+
 		mainWindow.remove(mainWindow.resultTestInformationPanel);
 		mainWindow.resultTestInformationPanel = null;
 		mainWindow.activateMenu();

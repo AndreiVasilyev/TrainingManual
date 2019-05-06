@@ -3,8 +3,7 @@ package by.bobruisk.trainingmanual.listener.runtestpanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.RunTestPanel;
 import by.bobruisk.trainingmanual.model.Answer;
 import by.bobruisk.trainingmanual.model.Question;
@@ -28,8 +27,9 @@ public class FixAnswerButtonListener implements ActionListener {
 		currentQuestion = runTestPanel.getTest().getQuestionsForTest().get(currentQuestionIndex);
 
 		if (runTestPanel.answerButtonGroup.getSelection() == null) {
-			JOptionPane.showMessageDialog(runTestPanel, "Сначала нужно выбрать вариант ответа!", "Ошибка",
-					JOptionPane.ERROR_MESSAGE);
+
+			ExceptionsDialogs.showWarningExceptionDialog("Сначала нужно выбрать вариант ответа!");
+
 		} else {
 			selectedAnswerText = runTestPanel.answerButtonGroup.getSelection().getActionCommand();
 			selectedAnswer = getSelectedAnswer();

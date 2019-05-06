@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
-import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
+import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.gui.CheckBoxNode;
 import by.bobruisk.trainingmanual.model.Question;
 import by.bobruisk.trainingmanual.model.Section;
@@ -26,7 +26,7 @@ public class QuestionsDataBase {
 		fileLoader = new FileLoader();
 		try {
 			sections = fileLoader.getData();
-		} catch (FileLoaderException currentException) {
+		} catch (DataLoaderException currentException) {
 
 			throw new DataBaseException("Ошибка получения данных для БД  " + currentException.getMessage(),
 					currentException);
@@ -52,7 +52,7 @@ public class QuestionsDataBase {
 	public void setSections(List<Section> sections) {
 		this.sections = sections;
 	}
-	
+
 	public List<String> getSelectedTopics() {
 		return selectedTopics;
 	}
@@ -80,8 +80,6 @@ public class QuestionsDataBase {
 
 		}
 	}
-
-	
 
 	public List<Question> createQuestionsForTest(DefaultMutableTreeNode node, Section section) {
 

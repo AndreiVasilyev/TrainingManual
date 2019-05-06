@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import by.bobruisk.trainingmanual.listener.selectCurrentUserWindow.AdminModeButtonListener;
+import by.bobruisk.trainingmanual.listener.selectCurrentUserWindow.DeleteStudentButtonListener;
 import by.bobruisk.trainingmanual.listener.selectCurrentUserWindow.NewStudentButtonListener;
 import by.bobruisk.trainingmanual.listener.selectCurrentUserWindow.RandomStudentButtonListener;
 import by.bobruisk.trainingmanual.listener.selectCurrentUserWindow.RemoveStudentButtonListener;
@@ -37,6 +38,7 @@ public class StudentsPanel extends JPanel {
 	public JTextField surnameTextField;
 	private JButton newStudentButton;
 	private JButton removeStudentButton;
+	private JButton deleteStudentButton;
 	private JButton selectStudentButton;
 	private JButton randomStudentButton;
 	private JButton adminModeButton;
@@ -50,7 +52,7 @@ public class StudentsPanel extends JPanel {
 		setLayout(new GridBagLayout());
 		setBorder(BorderFactory.createTitledBorder("Студенты"));
 		createComponents();
-		add(listScrollPane, new GridBagConstraints(0, 0, 1, 5, 0, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
+		add(listScrollPane, new GridBagConstraints(0, 0, 1, 6, 0, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
 				new Insets(5, 5, 5, 5), 0, 0));
 		add(newStudentLabel, new GridBagConstraints(1, 0, 2, 1, 0, 0, GridBagConstraints.WEST,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
@@ -64,13 +66,15 @@ public class StudentsPanel extends JPanel {
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 		add(newStudentButton, new GridBagConstraints(2, 3, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(5, 5, 20, 5), 0, 0));
-		add(removeStudentButton, new GridBagConstraints(1, 4, 2, 1, 0, 0, GridBagConstraints.NORTHWEST,
-				GridBagConstraints.NONE, new Insets(20, 0, 30, 5), 0, 0));
-		add(selectStudentButton, new GridBagConstraints(0, 5, 1, 1, 0, 0, GridBagConstraints.NORTHEAST,
+		add(deleteStudentButton, new GridBagConstraints(1, 4, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+				new Insets(20, 0, 5, 5), 0, 0));
+		add(removeStudentButton, new GridBagConstraints(1, 5, 2, 1, 0, 0, GridBagConstraints.NORTHWEST,
+				GridBagConstraints.NONE, new Insets(5, 0, 30, 5), 0, 0));
+		add(selectStudentButton, new GridBagConstraints(0, 6, 1, 1, 0, 0, GridBagConstraints.NORTHEAST,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
-		add(randomStudentButton, new GridBagConstraints(0, 6, 1, 1, 0, 0, GridBagConstraints.NORTHEAST,
+		add(randomStudentButton, new GridBagConstraints(0, 7, 1, 1, 0, 0, GridBagConstraints.NORTHEAST,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
-		add(adminModeButton, new GridBagConstraints(1, 6, 2, 1, 0, 1, GridBagConstraints.SOUTHEAST,
+		add(adminModeButton, new GridBagConstraints(1, 7, 2, 1, 0, 1, GridBagConstraints.SOUTHEAST,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 
 	}
@@ -93,6 +97,8 @@ public class StudentsPanel extends JPanel {
 		newStudentButton.addActionListener(new NewStudentButtonListener(selectCurrentUserWindow));
 		removeStudentButton = new JButton("Убрать из списка");
 		removeStudentButton.addActionListener(new RemoveStudentButtonListener(selectCurrentUserWindow));
+		deleteStudentButton= new JButton("Удалить");
+		deleteStudentButton.addActionListener(new DeleteStudentButtonListener(selectCurrentUserWindow));
 		selectStudentButton = new JButton("Выбрать выделенного");
 		selectStudentButton.addActionListener(new SelectStudentButtonListener(selectCurrentUserWindow));
 		randomStudentButton = new JButton("Выбрать случайно из списка");
@@ -108,7 +114,7 @@ public class StudentsPanel extends JPanel {
 		String currentGroupName = (String) selectCurrentUserWindow.groupsPanel.allGroupsComboBox.getSelectedItem();
 		if (currentGroupName != null && !currentGroupName.isEmpty()) {
 			currentGroup = selectCurrentUserWindow.mainWindow.usersDataBase.getGroups().stream()
-					.filter(Group -> Group.getGroupName().equals(currentGroupName)).findFirst().get();
+					.filter(group -> group.getGroupName().equals(currentGroupName)).findFirst().get();
 			if (!currentGroup.getStudents().isEmpty()) {
 				for (Student student : currentGroup.getStudents()) {
 					studentsForModel.add(student);

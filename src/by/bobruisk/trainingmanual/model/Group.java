@@ -3,8 +3,8 @@ package by.bobruisk.trainingmanual.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class Group implements Serializable{
-	
+public class Group implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private String groupName;
 	private List<Student> students;

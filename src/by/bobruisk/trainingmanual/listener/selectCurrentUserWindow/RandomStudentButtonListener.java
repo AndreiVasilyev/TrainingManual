@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
-
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.SelectCurrentUserWindow;
 import by.bobruisk.trainingmanual.model.Student;
 
@@ -41,8 +40,8 @@ public class RandomStudentButtonListener implements ActionListener {
 
 		} else {
 
-			JOptionPane.showMessageDialog(selectCurrentUserWindow, "Нет студентов для выбора", "Ошибка",
-					JOptionPane.WARNING_MESSAGE);
+			ExceptionsDialogs.showWarningExceptionDialog("Нет студентов для выбора");
+
 		}
 
 	}

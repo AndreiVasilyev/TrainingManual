@@ -67,8 +67,8 @@ public class SelectionThemesPanel extends JPanel {
 	}
 
 	public void createThemsTree() {
-	
-		createNodes(questionsDataBase.getSections(),rootNode);
+
+		createNodes(questionsDataBase.getSections(), rootNode);
 		model = new DefaultTreeModel(rootNode);
 		themsTree = new JTree(model);
 		themsTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);

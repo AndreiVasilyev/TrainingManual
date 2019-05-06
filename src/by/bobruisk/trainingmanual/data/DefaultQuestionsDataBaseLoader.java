@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
-import by.bobruisk.trainingmanual.exceptionHandling.FileLoaderException;
+import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.model.Answer;
 import by.bobruisk.trainingmanual.model.Question;
 import by.bobruisk.trainingmanual.model.Section;
@@ -113,13 +113,14 @@ public class DefaultQuestionsDataBaseLoader {
 		newSection("Типы данных", topics);
 
 		try {
-			
+
 			fileLoader.saveData((ArrayList<Section>) sections);
-			
-		} catch (FileLoaderException currentException) {
-			
-			throw new DataBaseException("Ошибка сохранения данных из БД"+currentException.getMessage(),currentException);
-			
+
+		} catch (DataLoaderException currentException) {
+
+			throw new DataBaseException("Ошибка сохранения данных из БД" + currentException.getMessage(),
+					currentException);
+
 		}
 
 	}

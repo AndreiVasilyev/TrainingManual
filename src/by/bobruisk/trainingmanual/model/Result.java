@@ -9,7 +9,7 @@ public class Result implements Serializable {
 	private String date;
 	private List<String> topics;
 	private int persents;
-	private String countAnswers;
+	private String resultText;
 
 	public String getDate() {
 		return date;
@@ -31,15 +31,15 @@ public class Result implements Serializable {
 		return persents;
 	}
 
-	public String getCountAnswers() {
-		return countAnswers;
+	public String getResultText() {
+		return resultText;
 	}
 
 	public void setPersents(int persents) {
 		this.persents = persents;
 	}
 
-	public void setCountAnswers(String countAnswers) {
-		this.countAnswers = countAnswers;
+	public void setResultText(String resultText) {
+		this.resultText = resultText;
 	}
 }

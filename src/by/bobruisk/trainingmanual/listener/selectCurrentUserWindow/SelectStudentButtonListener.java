@@ -4,8 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
+import by.bobruisk.trainingmanual.gui.ExceptionsDialogs;
 import by.bobruisk.trainingmanual.gui.SelectCurrentUserWindow;
 import by.bobruisk.trainingmanual.model.Student;
 
@@ -35,8 +34,8 @@ public class SelectStudentButtonListener implements ActionListener {
 
 		} else {
 
-			JOptionPane.showMessageDialog(selectCurrentUserWindow, "Нет выбранного студента!", "Ошибка",
-					JOptionPane.WARNING_MESSAGE);
+			ExceptionsDialogs.showWarningExceptionDialog("Нет выбранного студента!");
+
 		}
 
 	}

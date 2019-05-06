@@ -41,24 +41,20 @@ public class ResultTestInformationPanel extends JPanel {
 		setBorder(BorderFactory.createTitledBorder("Результаты теста"));
 		this.mainWindow = mainWindow;
 		test = mainWindow.questionsDataBase.test;
-		testPassingPersent = (int) ((float) test.getRightAnswersCount() / (float) test.getTestQuestionsCount()
-				* 100);
-		if(mainWindow.usersDataBase.getCurrentUser()!=null) {
-			currentUser=mainWindow.usersDataBase.getCurrentUser().toString();
+		testPassingPersent = (int) ((float) test.getRightAnswersCount() / (float) test.getTestQuestionsCount() * 100);
+		if (mainWindow.usersDataBase.getCurrentUser() != null) {
+			currentUser = mainWindow.usersDataBase.getCurrentUser().toString();
 			saveResults();
 		} else {
-			currentUser=mainWindow.usersDataBase.getDEFAULT_USER();
-			
+			currentUser = mainWindow.usersDataBase.getDefaultUser();
+
 		}
 		createPanelElements();
 
-		
 	}
 
-	
 	private void createPanelElements() {
 
-		
 		String status = (testPassingPersent >= test.getTEST_PASSING_LEVEL_PERSENT()) ? "СДАН" : "НЕ СДАН";
 		mainTextLabel = new JLabel("ТЕСТ ЗАВЕРШЕН");
 		mainTextLabel.setFont(mainTextLabel.getFont().deriveFont(Font.BOLD, 35f));
@@ -75,8 +71,8 @@ public class ResultTestInformationPanel extends JPanel {
 		closeInformationPanelButton.addActionListener(new CloseInformationPanelButtonListener(mainWindow));
 		add(mainTextLabel, new GridBagConstraints(0, 0, 4, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.VERTICAL, new Insets(5, 5, 5, 5), 0, 0));
-		add(currentStudentLabel, new GridBagConstraints(0, 1, 4, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-				new Insets(20, 5, 5, 5), 0, 0));
+		add(currentStudentLabel, new GridBagConstraints(0, 1, 4, 1, 0, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.NONE, new Insets(20, 5, 5, 5), 0, 0));
 		add(statusLabel, new GridBagConstraints(1, 2, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(40, 5, 5, 5), 0, 0));
 		add(statusValue, new GridBagConstraints(2, 2, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
@@ -93,20 +89,20 @@ public class ResultTestInformationPanel extends JPanel {
 				GridBagConstraints.NONE, new Insets(40, 5, 5, 5), 0, 0));
 
 	}
-	
+
 	private void saveResults() {
-		
-		Student student=mainWindow.usersDataBase.getCurrentUser();
+
+		Student student = mainWindow.usersDataBase.getCurrentUser();
 		List<String> topics = mainWindow.questionsDataBase.getSelectedTopics();
-		if(student.getPassedTests()==null) {
-			List<Result> results=new ArrayList<Result>();
+		if (student.getPassedTests() == null) {
+			List<Result> results = new ArrayList<Result>();
 			student.setPassedTests(results);
 		}
-		Result result=new Result();
+		Result result = new Result();
 		result.setTopics(topics);
 		result.setDate(LocalDateTime.now().toString());
 		result.setPersents(testPassingPersent);
-		result.setCountAnswers(test.getRightAnswersCount() + "/" + test.getTestQuestionsCount());
+		result.setResultText(test.getRightAnswersCount() + "/" + test.getTestQuestionsCount());
 		student.getPassedTests().add(result);
 		mainWindow.usersDataBase.saveChanges();
 	}
