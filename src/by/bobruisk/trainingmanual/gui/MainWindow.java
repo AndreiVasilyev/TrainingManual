@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import org.apache.log4j.Logger;
+
 import by.bobruisk.trainingmanual.data.QuestionsDataBase;
 import by.bobruisk.trainingmanual.data.UsersDataBase;
 import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
@@ -16,9 +18,11 @@ import by.bobruisk.trainingmanual.listener.mainwindowelements.ExitMenuItemListen
 import by.bobruisk.trainingmanual.listener.mainwindowelements.RunTestMenuItemListener;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.SelectionThemesMenuItemListener;
 import by.bobruisk.trainingmanual.listener.mainwindowelements.ViewStatisticsMenuItemListener;
+import by.bobruisk.trainingmanual.run.Run;
 
 public class MainWindow extends JFrame {
 
+	private final static Logger LOGGER = Logger.getLogger(Run.class);
 	private static final long serialVersionUID = 1L;
 	public JMenuBar menuBar;
 	public JMenu menu;
@@ -34,7 +38,7 @@ public class MainWindow extends JFrame {
 	public MainPanel mainPanel;
 
 	public MainWindow(QuestionsDataBase questionsDataBase, UsersDataBase usersDataBase) {
-
+		LOGGER.info("start application");
 		this.questionsDataBase = questionsDataBase;
 		this.usersDataBase = usersDataBase;
 		setMainWindowParameters();
@@ -51,6 +55,7 @@ public class MainWindow extends JFrame {
 	}
 
 	public void createLoginDialog() {
+		LOGGER.info("creation login dialog");
 		loginDialog = new LoginDialog(this);
 		loginDialog.setVisible(true);
 		if (loginDialog.isSucceeded()) {
@@ -60,11 +65,11 @@ public class MainWindow extends JFrame {
 
 	public void createMainPanel() throws MainWindowException {
 		try {
-
+			LOGGER.warn("creation MainPanel");
 			mainPanel = new MainPanel(this);
 
 		} catch (DataLoaderException currentException) {
-
+			LOGGER.error("creation MainPanel failed, DataLoaderException");
 			throw new MainWindowException("Ошибка создания GUI " + currentException.getMessage(), currentException);
 
 		}
@@ -73,30 +78,35 @@ public class MainWindow extends JFrame {
 	}
 
 	public void createInputNewQuestionPanel() {
+		LOGGER.info("creation InputNewQuestionPanel");
 		inputNewQuestionPanel = new InputNewQuestionPanel(this);
 		getContentPane().add(inputNewQuestionPanel, BorderLayout.CENTER);
 		validate();
 	}
 
 	public void createSelectionThemesPanel() {
+		LOGGER.info("creation SelectionThemesPanel");
 		selectionThemesPanel = new SelectionThemesPanel(this);
 		getContentPane().add(selectionThemesPanel, BorderLayout.CENTER);
 		validate();
 	}
 
 	public void createViewStatisticPanel() {
+		LOGGER.info("creation ViewStatisticPanel");
 		viewStatisticPanel = new ViewStatisticPanel(this);
 		getContentPane().add(viewStatisticPanel, BorderLayout.CENTER);
 		validate();
 	}
 
 	public void createRunTestPanel() {
+		LOGGER.info("creation RunTestPanel");
 		runTestPanel = new RunTestPanel(this);
 		getContentPane().add(runTestPanel, BorderLayout.CENTER);
 		validate();
 	}
 
 	public void createResultTestInformationPanel() {
+		LOGGER.info("creation ResultTestInformationPanel");
 		resultTestInformationPanel = new ResultTestInformationPanel(this);
 		getContentPane().add(resultTestInformationPanel, BorderLayout.CENTER);
 		validate();

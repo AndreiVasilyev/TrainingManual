@@ -1,0 +1,25 @@
+2019-05-07 18:44:16 INFO  Run:14 - run application
+2019-05-07 20:49:22 INFO  Run:14 - run application
+2019-05-07 20:49:22 INFO  Run:27 - run dataFileLoader
+2019-05-07 21:06:23 INFO  Run:14 - run application
+2019-05-07 21:06:23 INFO  Run:27 - run dataFileLoader
+2019-05-07 21:06:23 WARN  Run:29 - check if file exist
+2019-05-07 21:06:23 INFO  Run:65 - get data method started
+2019-05-07 21:06:24 WARN  Run:69 - try reading data
+2019-05-07 21:29:18 INFO  Run:14 - run application
+2019-05-07 21:29:18 INFO  Run:27 - run dataFileLoader
+2019-05-07 21:29:18 WARN  Run:29 - check if file exist
+2019-05-07 21:29:18 INFO  Run:66 - get data method started
+2019-05-07 21:29:18 WARN  Run:70 - try reading data
+2019-05-07 21:29:18 WARN  Run:72 - reading OK
+2019-05-07 21:29:18 INFO  Run:26 - run statFileLoader
+2019-05-07 21:29:18 WARN  Run:28 - check if file exist
+2019-05-07 21:29:18 INFO  Run:68 - get data method started
+2019-05-07 21:29:18 WARN  Run:73 - try reading data
+2019-05-07 21:29:18 WARN  Run:75 - reading OK
+2019-05-07 21:29:18 INFO  Run:41 - start application
+2019-05-07 21:29:18 WARN  Run:68 - creation MainPanel
+2019-05-07 21:29:45 INFO  Run:88 - creation SelectionThemesPanel
+2019-05-07 21:29:48 WARN  Run:68 - creation MainPanel
+2019-05-07 21:29:55 INFO  Run:95 - creation ViewStatisticPanel
+2019-05-07 21:29:59 WARN  Run:68 - creation MainPanel
