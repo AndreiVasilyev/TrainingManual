@@ -23,3 +23,50 @@
 2019-05-07 21:29:48 WARN  Run:68 - creation MainPanel
 2019-05-07 21:29:55 INFO  Run:95 - creation ViewStatisticPanel
 2019-05-07 21:29:59 WARN  Run:68 - creation MainPanel
+2019-05-08 18:52:37 INFO  Run:14 - run application
+2019-05-08 18:52:37 INFO  Run:27 - start creation QuestionsDataBase
+2019-05-08 18:52:37 INFO  Run:27 - run dataFileLoader
+2019-05-08 18:52:37 WARN  Run:29 - check if file exist
+2019-05-08 18:52:37 WARN  Run:33 - try load sections
+2019-05-08 18:52:37 INFO  Run:66 - get data method started
+2019-05-08 18:52:37 WARN  Run:70 - try reading data
+2019-05-08 18:52:38 WARN  Run:72 - reading OK
+2019-05-08 18:52:38 WARN  Run:35 - loading OK
+2019-05-08 18:52:38 INFO  Run:79 - start setDefaultQuestionsForTest()
+2019-05-08 18:52:38 INFO  Run:25 - start creation UsersDataBase
+2019-05-08 18:52:38 INFO  Run:26 - run statFileLoader
+2019-05-08 18:52:38 WARN  Run:28 - check if file exist
+2019-05-08 18:52:38 WARN  Run:29 - try load groups
+2019-05-08 18:52:38 INFO  Run:68 - get data method started
+2019-05-08 18:52:38 WARN  Run:73 - try reading data
+2019-05-08 18:52:38 WARN  Run:75 - reading OK
+2019-05-08 18:52:38 WARN  Run:31 - loading OK
+2019-05-08 18:52:38 INFO  Run:41 - start application
+2019-05-08 18:52:38 WARN  Run:68 - creation MainPanel
+2019-05-08 18:52:56 INFO  Run:88 - creation SelectionThemesPanel
+2019-05-08 18:53:04 INFO  Run:96 - start createQuestionsForTest()
+2019-05-08 18:53:04 INFO  Run:131 - start getCurrentSection()
+2019-05-08 18:53:04 INFO  Run:96 - start createQuestionsForTest()
+2019-05-08 18:53:04 INFO  Run:143 - start getAllQuestionsFromTopic()
+2019-05-08 18:53:04 INFO  Run:143 - start getAllQuestionsFromTopic()
+2019-05-08 18:53:04 INFO  Run:143 - start getAllQuestionsFromTopic()
+2019-05-08 18:53:04 INFO  Run:131 - start getCurrentSection()
+2019-05-08 18:53:04 INFO  Run:96 - start createQuestionsForTest()
+2019-05-08 18:53:04 INFO  Run:143 - start getAllQuestionsFromTopic()
+2019-05-08 18:53:04 INFO  Run:143 - start getAllQuestionsFromTopic()
+2019-05-08 18:53:04 INFO  Run:143 - start getAllQuestionsFromTopic()
+2019-05-08 18:53:04 WARN  Run:68 - creation MainPanel
+2019-05-08 18:53:07 INFO  Run:26 - start creation Test
+2019-05-08 18:53:07 INFO  Run:99 - start resetFlags()
+2019-05-08 18:53:07 INFO  Run:79 - start createQuestionsForTest()
+2019-05-08 18:53:07 INFO  Run:102 - creation RunTestPanel
+2019-05-08 18:53:13 INFO  Run:109 - creation ResultTestInformationPanel
+2019-05-08 18:53:14 INFO  Run:70 - start saveChanges()
+2019-05-08 18:53:14 WARN  Run:73 - try save changes
+2019-05-08 18:53:14 INFO  Run:44 - save data method started
+2019-05-08 18:53:14 WARN  Run:47 - try writing data
+2019-05-08 18:53:14 WARN  Run:49 - writing OK
+2019-05-08 18:53:14 WARN  Run:75 - saving OK
+2019-05-08 18:53:29 WARN  Run:68 - creation MainPanel
+2019-05-08 18:53:34 INFO  Run:95 - creation ViewStatisticPanel
+2019-05-08 18:53:44 WARN  Run:68 - creation MainPanel

@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import org.apache.log4j.Logger;
+
 import by.bobruisk.trainingmanual.model.Question;
+import by.bobruisk.trainingmanual.run.Run;
 
 public class Test {
+
+	private final static Logger LOGGER = Logger.getLogger(Run.class);
 	private final int TEST_PASSING_LEVEL_PERSENT = 80;
 	private final int DEFAULT_TEST_QUESTIONS_COUNT = 10;
 	private List<Question> selectedQuestionsForTest;
@@ -17,6 +23,7 @@ public class Test {
 
 	public Test(List<Question> selectedQuestionsForTest) {
 
+		LOGGER.info("start creation Test");
 		this.selectedQuestionsForTest = selectedQuestionsForTest;
 		testQuestionsCount = DEFAULT_TEST_QUESTIONS_COUNT;
 		rightAnswersCount = 0;
@@ -69,6 +76,7 @@ public class Test {
 
 	public void createQuestionsForTest() {
 
+		LOGGER.info("start createQuestionsForTest()");
 		Random random = new Random();
 		if (testQuestionsCount > selectedQuestionsForTest.size()) {
 			testQuestionsCount = selectedQuestionsForTest.size();
@@ -87,6 +95,8 @@ public class Test {
 	}
 
 	public void resetFlags() {
+
+		LOGGER.info("start resetFlags()");
 		for (int i = 0; i < selectedQuestionsForTest.size(); i++) {
 			selectedQuestionsForTest.get(i).setAnswered(false);
 			for (int j = 0; j < selectedQuestionsForTest.get(i).getAnswers().size(); j++) {

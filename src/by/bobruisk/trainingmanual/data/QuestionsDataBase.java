@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.apache.log4j.Logger;
+
 import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
 import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.gui.CheckBoxNode;
 import by.bobruisk.trainingmanual.model.Question;
 import by.bobruisk.trainingmanual.model.Section;
+import by.bobruisk.trainingmanual.run.Run;
 
 public class QuestionsDataBase {
 
+	private final static Logger LOGGER = Logger.getLogger(Run.class);
 	private List<Section> sections;
 	private List<Question> selectedQuestionsForTest;
 	private List<String> selectedTopics;
@@ -20,14 +24,19 @@ public class QuestionsDataBase {
 	public DataLoader fileLoader;
 
 	public QuestionsDataBase() throws DataBaseException {
-
+		LOGGER.info("start creation QuestionsDataBase");
 		sections = new ArrayList<Section>();
 		allSectionsName = new ArrayList<String>();
 		fileLoader = new FileLoader();
 		try {
+
+			LOGGER.warn("try load sections");
 			sections = fileLoader.getData();
+			LOGGER.warn("loading OK");
+
 		} catch (DataLoaderException currentException) {
 
+			LOGGER.error("loading failed", currentException);
 			throw new DataBaseException("Ошибка получения данных для БД  " + currentException.getMessage(),
 					currentException);
 		}
@@ -67,6 +76,7 @@ public class QuestionsDataBase {
 
 	private void setDefaultQuestionsForTest(List<Section> subsections) {
 
+		LOGGER.info("start setDefaultQuestionsForTest()");
 		for (int i = 0; i < subsections.size(); i++) {
 			if (subsections.get(i).getTopics() != null) {
 				for (int j = 0; j < subsections.get(i).getTopics().size(); j++) {
@@ -83,6 +93,7 @@ public class QuestionsDataBase {
 
 	public List<Question> createQuestionsForTest(DefaultMutableTreeNode node, Section section) {
 
+		LOGGER.info("start createQuestionsForTest()");
 		DefaultMutableTreeNode currentNode;
 		Section currentSection;
 
@@ -116,6 +127,8 @@ public class QuestionsDataBase {
 	}
 
 	private Section getCurrentSection(List<Section> sections, String sectionName) {
+
+		LOGGER.info("start getCurrentSection()");
 		for (int i = 0; i < sections.size(); i++) {
 			if (sections.get(i).getSectionName().equals(sectionName)) {
 				return sections.get(i);
@@ -127,6 +140,7 @@ public class QuestionsDataBase {
 
 	private void getAllQuestionsFromTopic(Section section, String topicName, boolean isSelected) {
 
+		LOGGER.info("start getAllQuestionsFromTopic()");
 		for (int i = 0; i < section.getTopics().size(); i++) {
 			if (section.getTopics().get(i).getTopicName().equals(topicName)) {
 
@@ -145,6 +159,7 @@ public class QuestionsDataBase {
 
 	public List<String> getAllSectionsName(List<Section> subsections) {
 
+		LOGGER.info("start getAllSectionsName()");
 		for (int i = 0; i < subsections.size(); i++) {
 			if (!allSectionsName.contains(subsections.get(i).getSectionName())) {
 				allSectionsName.add(subsections.get(i).getSectionName());
@@ -158,6 +173,7 @@ public class QuestionsDataBase {
 
 	public List<String> getTopicsName(List<Section> subsections, String sectionName) {
 
+		LOGGER.info("start getTopicsName()");
 		List<String> topicsName = new ArrayList<String>();
 		for (int i = 0; i < subsections.size(); i++) {
 			if (subsections.get(i).getSectionName().equals(sectionName) && subsections.get(i).getTopics() != null) {

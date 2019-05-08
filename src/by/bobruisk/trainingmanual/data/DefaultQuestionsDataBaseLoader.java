@@ -3,15 +3,19 @@ package by.bobruisk.trainingmanual.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import by.bobruisk.trainingmanual.exceptionHandling.DataBaseException;
 import by.bobruisk.trainingmanual.exceptionHandling.DataLoaderException;
 import by.bobruisk.trainingmanual.model.Answer;
 import by.bobruisk.trainingmanual.model.Question;
 import by.bobruisk.trainingmanual.model.Section;
 import by.bobruisk.trainingmanual.model.Topic;
+import by.bobruisk.trainingmanual.run.Run;
 
 public class DefaultQuestionsDataBaseLoader {
 
+	private final static Logger LOGGER = Logger.getLogger(Run.class);
 	private DataLoader fileLoader;
 	private List<Section> sections;
 	private List<Topic> topics;
@@ -23,7 +27,8 @@ public class DefaultQuestionsDataBaseLoader {
 	}
 
 	public void loadDefaultDataToFile() throws DataBaseException {
-
+		
+		LOGGER.info("start loadDefaultDataToFile()");
 		sections = new ArrayList<Section>();
 		topics = new ArrayList<Topic>();
 		questions = new ArrayList<Question>();

@@ -32,7 +32,7 @@ public class StatFileLoader implements StatLoader {
 				resourceFile.createNewFile();
 				LOGGER.warn("creation OK");
 			} catch (IOException currentException) {
-				LOGGER.error("creation failed, IOException");
+				LOGGER.error("creation failed", currentException);
 				throw new DataLoaderException("Сбой создания файла статистики", currentException);
 			}
 
@@ -51,12 +51,12 @@ public class StatFileLoader implements StatLoader {
 
 		} catch (FileNotFoundException currentException) {
 
-			LOGGER.error("writing failed, file not found");
+			LOGGER.error("writing failed", currentException);
 			throw new DataLoaderException("Файл для записи не найден", currentException);
 
 		} catch (IOException currentException) {
 
-			LOGGER.error("writing failed, IOException");
+			LOGGER.error("writing failed", currentException);
 			throw new DataLoaderException(ExceptionsDialogs.WRITE_ERROR + " в файл", currentException);
 
 		}
@@ -75,15 +75,15 @@ public class StatFileLoader implements StatLoader {
 				LOGGER.warn("reading OK");
 
 			} catch (FileNotFoundException currentException) {
-				LOGGER.error("reading failed, file not found");
+				LOGGER.error("reading failed", currentException);
 				throw new DataLoaderException("Файл для чтения не найден", currentException);
 
 			} catch (IOException currentException) {
-				LOGGER.error("reading failed, IOException");
+				LOGGER.error("reading failed", currentException);
 				throw new DataLoaderException(ExceptionsDialogs.READ_ERROR + " из файла", currentException);
 
 			} catch (ClassNotFoundException currentException) {
-				LOGGER.error("reading failed, class not found");
+				LOGGER.error("reading failed", currentException);
 				throw new DataLoaderException(
 						"Данные для чтения из файла повреждены или не соответствуют требуемому формату!",
 						currentException);
